@@ -27,3 +27,9 @@ Save map
 ```bash
 rosrun map_server map_saver -f ~/bounded_world_map
 ```
+
+Prerequisite
+------------
+```bash
+sudo apt-get install ros-kinetic-navigation
+```
