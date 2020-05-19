@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<launch>
+  <master auto="start"/>
+  <param name="/use_sim_time" value="true"/>
+  <!--- Run gmapping -->
+  <node pkg="gmapping" name="slam_gmapping" type="slam_gmapping" output="screen">
+    <param name="delta" value="0.01"/>
+    <param name="xmin" value="-20"/>
+    <param name="xmax" value="20"/>
+    <param name="ymin" value="-20"/>
+    <param name="ymax" value="20"/>
+    <remap from="scan" to="/virat/laser_scan"/>
+    <param name="base_frame" value="base_link" />
+
+    <param name="linearUpdate" value="0.5"/>
+    <param name="angularUpdate" value="0.436"/>
+    <param name="temporalUpdate" value="-1.0"/>
+    <param name="resampleThreshold" value="0.5"/>
+    <param name="particles" value="100"/>
+
+  </node>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find virat_gazebo)/models/virat/virat_model.xacro'"/>
+
+  <!-- send fake joint values -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="False"/>
+  </node>
+
+  <!-- Combine joint values -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find virat_slam)/rviz/virat_gmapping.rviz"/>
+
+</launch>
