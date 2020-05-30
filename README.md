@@ -1,4 +1,5 @@
 # virat_slam
+
 Package for SLAM execution using gmapping
 
 Usage
@@ -30,6 +31,7 @@ rosrun map_server map_saver -f ~/bounded_world_map
 
 Prerequisite
 ------------
+
 ```bash
 sudo apt-get install ros-kinetic-navigation
 ```
