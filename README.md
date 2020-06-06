@@ -1,3 +1,5 @@
+![alt text](https://img.shields.io/badge/status-stable-brightgreen)
+
 # virat_slam
 
 Package for SLAM execution using gmapping
